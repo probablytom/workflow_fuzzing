@@ -1,8 +1,30 @@
 ---
 
-title: Introducing Dynamic Fuzzing
-
----
+title: "Introducing Dynamic Fuzzing"
+journal: TBD
+author:
+- name: Tom Wallis
+  footnote: 
+  corresponding: w.wallis.1@research.gla.ac.uk
+- name: Tim Storer
+  footnote: 1
+affiliation:
+- number: 1
+  name: Glasgow University, Computing Science
+keyword:
+  - dynamic fuzzing
+  - python
+  - TODO more keywords
+abstract: Capturing and modelling unpredictable behaviour in certain classes of systems can be very difficult: as the behaviour of actors in the system becomes less predictable, and more contingent on external or intractible factors, a model of the system's behaviour becomes intractible to construct due to the scale of variance a model of the system must capture. This paper presents dynamic fuzzing, a method for simplifying a model of a system with intractibly contingent behaviour. After introducing the concepts of dynamic fuzzing, a suite of Python frameworks to construct dynamically fuzzed models are presented, and a sample model using these frameworks explored as a case study.
+bibliography: references.bib
+acknowledgements: |
+  Obashi and co
+contribution: |
+  Must include all authors, identified by initials, for example:
+  A.A. conceived the experiment(s),  A.A. and B.A. conducted the experiment(s), C.A. and D.A. analysed the results.  All authors reviewed the manuscript.
+additionalinformation: |
+  To include, in this order: \textbf{Accession codes} (where applicable); \textbf{Competing financial interests} (mandatory statement).
+  The corresponding author is responsible for submitting a \href{http://www.nature.com/srep/policies/index.html#competing}{competing financial interests statement} on behalf of all authors of the paper.
 
 <!-- 
 
@@ -66,7 +88,7 @@ Thus, fuzzers can be static or dynamic, depending on when the model uses them to
         - a list where the first item is a condition and all other items are the rest of the workflow to be run if condition matches output of condition_function's return value
         - checked in order
           - important, because the return value could be equal to more than one thing!
-        - TODO: to be turned into a list of tuples of the form [(case, workflow), ...]
+        - progrmaming TODO: to be turned into a list of tuples of the form [(case, workflow), ...]
     - a function
       - represents a task to be done
 - this representation has an indexing system used to denote place on the automata.
@@ -80,7 +102,7 @@ Thus, fuzzers can be static or dynamic, depending on when the model uses them to
   - we repeat this indexing for all nested workflow automata.
   
   
-# TODO #
+# writing TODO #
 - How do we discuss the representation of ticks passed for a task?
 - How do we talk about theatre as a precursor to this model for actor synchronisation?
 - Are clocks actually actors?
@@ -91,14 +113,35 @@ Thus, fuzzers can be static or dynamic, depending on when the model uses them to
 
 -->
 
+---
+
+
 
 # Introduction #
+As the complexity of a system's behaviour increases, especially when this behaviour is contingent on intractible or external factors, future states of the system writ large becomes difficult to predict.
 
+This poses problems for systems science. The strength of the scientific method is an ability to predict: a theory becomes more solidly founded, and proves its value to the scientific community, via its ability to predict unseen states of its subject. Therefore, a system science paradigm which is unable to predict these states is hampered from the very start.
 
-# Motivation #
+Socio-technical systems represent a class of real-world systems which, relatively speaking, might be considered simple. A socio-technical system doesn't necessarily permit the more complex nature of, for example, a complex adaptive system; yet, socio-technical systems still present a difficult class of systems to build accurate models of. Attempts to build models of socio-technical systems usually fall into one of two categories: simplified models of the world, such as goal-oriented modelling and responsibility modelling, and more structured models of the world, such as workflow modelling or modelling via activity diagrams and petri nets.
+
+There are benefits to both approaches, yet the two remain orthogonal to each other. A less structured model, for example, can ususally capture relatively high-level detail about the world. Responsibility modelling is an attempt to capture information about human systems which can determine which agents in a system are accountable for certain events, or the achievement of certain goals. This information is captured at a high level, and information about the system is inferred. Workflow modelling, on the other hand, captures low-level detail about the behaviours of agents within a system. The notion behind workflow modelling is that, by modelling fine-grained detail about a system, one is able to simulate the system and infer high-level details from the emergent properties percieved. Either philosophy exhibits flaws due to the inherant trade-off between the degree of detail captured and the ease of capturing said detail.
+
+This can be seen in illustrative examples from either philosophy. Socio-technical systems naturally exhibit non-linear, intractible behaviour which can spiral in myriad directions due to the influence of small changes in one of thousands of variables. This note is important, because one typically constructs a model to learn something about its subject: a typical process is to construct a model, analyse it, and draw conclusions. A system model which relies on high-level detail, however, loses key details which makes quantitative analysis and simulation impossible. Typical high-level socio-technical modelling techniques eschew this analysis in favour of their only remaining option: a visual analysis of the system, and conclusions drawn simply from the analyst's rationality. Illustrative examples would be Soft Systems Methodology's diagrammatic approach, or UML's graphical nature.
+
+Unfortuantely, modelling at this high level of detail is often the only way to draw nuanced conclusions about high-level and/or emergent properties of a system. A low-level model must describe the thousands of variables that high-level models cannot, and high-level conclusions from these models can only be drawn if those conclusions are easily accurately quantified and well-understood. Unfortunately, high-level properties can be determined by many disparate propeties of the modelled system, making them intractible to determine analytically. <!-- maybe say something about netlogo's graphical approach here? -->
+
 
 
 # Standard Models for Dynamic Fuzzing #
+
+<!-- Actors -->
+
+<!-- Time -->
+Standard model of time is a clock which holds a set of entities subscribed to it. These entities are expected to be able to perform() as per the actor spec.
+
+Clock ticks by running perform() for each actor subscribed. It assumes each perform() implementation will yield control and operate as a GreenThread.
+
+<!-- Workflows -->
 
 
 # Reference Implementation for Dynamic Fuzzing #
