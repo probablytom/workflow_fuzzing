@@ -130,7 +130,18 @@ This can be seen in illustrative examples from either philosophy. Socio-technica
 
 Unfortuantely, modelling at this high level of detail is often the only way to draw nuanced conclusions about high-level and/or emergent properties of a system. A low-level model must describe the thousands of variables that high-level models cannot, and high-level conclusions from these models can only be drawn if those conclusions are easily accurately quantified and well-understood. Unfortunately, high-level properties can be determined by many disparate propeties of the modelled system, making them intractible to determine analytically. <!-- maybe say something about netlogo's graphical approach here? -->
 
+# Re-Interpreting Large vs. Small #
 
+A re-interpretation of some classic concepts in computing science literature might provide some improvements.
+
+Programming In The Large vs Programming In The Small was an influential paper which presented a philosophy on the design of our languages. Particularly, <!-- AUTHORS --> claim that software systems are usually composed of two parts: units of implementation detail, and separately, orchestration around those smaller units. This approach has some benefits:
+
+1. Small implementation units are easier to test than potentially large ones. Having a separate language for the implementation of smaller units ought to keep their size reasonably bounded.
+2. Focus on orchestration as a separate activity ought to make easier: the highlighting of security vulnerabilities from improperly connected units; the maintainance of a system; the work required in considering and architecting a system
+3. The work involved in implementation, and in orchestrating implemented units, require different modes of thought. To implement _both_ in one language or framework may work to blur the line between the two, detracting from the thought process required of both.
+<!-- TODO: what's the citation count of Large vs. Small? -->
+
+<!-- Some notes from John O'Donnell and general history of CS stuff here, claiming that the presented interpretation of Large vs. Small is a little new... -->
 
 # Standard Models for Dynamic Fuzzing #
 
