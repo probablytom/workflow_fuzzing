@@ -139,6 +139,42 @@ In this paper, we posit that identifying a similar division in modelling technol
 1. Individual actions which actors can perform, specified in a low-level language suitable for this task
 2. Actions composed together into a workflow, specified in a high-level language which specifies new actions, by chaining together others
 
+<!-- TODO: solved a merge conflict here. The last few paras of this and the beginning of the next section were written on different branches. Does this still flow properly? -->
+
+# Re-Interpreting Large vs. Small #
+
+A re-interpretation of some classic concepts in computing science literature might provide some improvements to the common paradigm.
+
+Programming In The Large vs Programming In The Small was an influential paper which presented a philosophy on the design of our languages. Particularly, <!-- AUTHORS --> claim that software systems are usually composed of two parts: units of implementation detail, and separately, orchestration around those smaller units. This approach has some benefits:
+
+1. Small implementation units are easier to test than potentially large ones. Having a separate language for the implementation of smaller units ought to keep their size reasonably bounded.
+2. Focus on orchestration as a separate activity ought to make easier: the highlighting of security vulnerabilities from improperly connected units; the maintainance of a system; the work required in considering and architecting a system
+3. The work involved in implementation, and in orchestrating implemented units, require different modes of thought. To implement _both_ in one language or framework may work to blur the line between the two, detracting from the thought process required of both.
+<!-- TODO: what's the citation count of Large vs. Small? -->
+
+In the context of building a _model_, this means developing low-level descriptions of the world in a "lower-level" implementation language, and tying these together into a model of the world using a "higher-level" description language.
+
+This approach to modelling was originally conceived in the context of workflow modelling, which provides a convenient example to explore this modelling philosophy in more detail.
+
+Canonical examples of workflow models might be UML activity diagrams, which _structure_ work in a clear way. This allows the high-level modelling discussed earlier. However, UML activity diagrams must be paired with some implementation of the actions discussed in the model for any _simulation_ to occur; without this, only inspection of the workflow itself can be achieved. To implement the individual actions detailed in an activity diagram means using a language other than a UML activity diagram, because specific implementation details cannot be expressed in these diagrams. 
+
+Alternatively, focus can be on these low-level model details, and a model can describe only the implementation details of individual actions --- say, in a programming language. This permits a notation for a workflow which might seem convenient: workflows can be described as functions which simply execute these implementations, and flow control such as decisions in the workflow can be expressed using common control flow structures in most major programming languages. Indeed, a model can technically be implemented in any Turing-complete programming language --- yet this observation is not especially helpful, as any high-level understanding of the model created would be hard to achieve from reading programming code. For this, a better approach would be to represent the workflow in a more readable form than programming code, which would presumably be developed for the purpose of writing the workflow itself outside of implementation details. Unfortunately, we have arrived back at a UML activity diagram. 
+
+Rather than choosing between the two, we might opt to write the workflow in one language, and the implementation details in another, combining them as appropriate. Here we get the best of both worlds: low-level detail can be described in an appropriate format, to enable the execution of a simulation, yet high-level detail can be described in a format appropriate for reasoning about the flow of actions, rather than the specifics of the actions. 
+
+The benefit of the approach, ultimately, is that the modeller is able to use whatever tool is most appropriate for the task at hand. UML activity diagrams _exist_ for the purpose of easier reasoning and communication about workflows, whereas high-level programming languages exist for the purpose of easier reasoning and communication about programs.
+
+## Are programs models? ##
+
+This work began as an answer to the question, ``what is the difference between a programming language and a modelling language?''.
+
+Programming languages can clearly _represent_ anything representable in a modelling language --- and, because not all modelling languages are Turing-complete, modelling languages cannot represent everything representable in a programming language. However, the nature of most modelling languages is different to the nature of most programming languages: they are frequently graphical in nature, and tend to be descriptive rather than defining procedures.
+
+The difference, therefore, is perhaps the _perspective_ of the user of the language. A language designed graphically and simply, which is incapable of specifying low-level detail, indicates that the language is designed for a use case where low-level details detract from the work at hand, even if they might ultimately be useful to the user of the model. That such languages see popularity indicates that that use case is a legitimate one, which fulfils a genuine need "in the wild".
+
+We propose that the difference between a modelling language and a programming language is the perspective of the user of the language: in just the same way that a user of a high-level programming language has different needs (and a different perspective) to a writer of assembly code, so too do the modeller and the programmer have different needs and perspectives. Unlike programming, however, modelling typically does not link these high and low level perspectives well. 
+
+<!-- Some notes from John O'Donnell and general history of CS stuff here, claiming that the presented interpretation of Large vs. Small is a little new... -->
 
 # Standard Models for Dynamic Fuzzing #
 
